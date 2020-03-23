@@ -137,8 +137,9 @@ function getArray(num){
 	}
 	return arr;
 }
+
 function printArr(arr){
-	for (var i = 0; i < arr.length; i++) {
+	for (let i = 0; i < arr.length; i++) {
 		console.log("arr[" + i + "] = " + arr[i]);
 	}
 }
