@@ -13,7 +13,7 @@ function sortAbc(str){
 
 // 2. Найти все вхождения подстроки в строку.
 // 	Строку и подстроку вводит пользователь
-function findSubstring(str, sub){
+function findSubstring(str, sub, reverseFlag = false){
 	let startPosArr = [];
 	let startPos = 0;
 	let result = [];
@@ -23,10 +23,20 @@ function findSubstring(str, sub){
 		startPosArr.push(startPos);		
 		startPos++;		
 	}
+	if (!reverseFlag) {
+		// Выделить из строки все вхождения подстроки
+		for (var i = 0; i < startPosArr.length; i++) {		
+			result.push(str.slice(startPosArr[i], startPosArr[i] + sub.length));
+		}	
+	}else{
+		// Выделить из строки все кроме подстрок
+		result.push(str.slice(0,startPosArr[0]));
+		for (var i = 0; i < startPosArr.length; i++) {			
+			result.push(str.slice(startPosArr[i] + 1, startPosArr[i + 1]));
+		}
+
+	}
 	
-	for (var i = 0; i < startPosArr.length; i++) {		
-		result.push(str.slice(startPosArr[i], startPosArr[i] + sub.length));
-	}	
 	
 	return result;
 }
