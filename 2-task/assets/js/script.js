@@ -83,8 +83,10 @@ function findSubstring(str, sub, reverseFlag = false) {
     return result;
 }
 
-function isPalindrom(str){	
+function isPalindrom(str){
+	// Приводим введенные данные к одной строку без пробелов
 	let fullStr = arrayToString(findSubstring(str, " ", true)).toLowerCase();
+	// разворачиваем строку, приводя ее к массиву и обратно 
 	let reverseStr = arrayToString(stringToArray(fullStr).reverse());
 	return(fullStr===reverseStr);
 }
@@ -102,5 +104,3 @@ function stringToArray(str){
 	}
 	return result;
 }
-
-// 3. Определить, является ли заданная строка палиндромом или нет
