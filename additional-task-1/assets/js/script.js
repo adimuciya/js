@@ -121,7 +121,7 @@ function getMatrix(col, row = 1) {
     }    
     return matrix;
 }
-// Поиск максимального, минимального и среднего хначения
+// Поиск максимального, минимального и среднего значения
 function findMinMaxElement(matrix){
     let result = "";
     if (Array.isArray(matrix[0])) {
