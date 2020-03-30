@@ -1,0 +1,7 @@
+body{
+	background-color: lightgreen;
+}
+.container{
+	margin: 0 auto;
+	max-width: 600px;
+}
