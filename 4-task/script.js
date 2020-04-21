@@ -102,13 +102,13 @@ let getByLanguage = (usersArr, language) => usersArr.filter(e => e.favouriteLang
 
 function sortByCity(usersArr){
 usersArr.sort(function (a, b) {
-  if (a.city.toLowerCase() > b.citytoLowerCase()) {
+    console.log(`a = ${a.city}\nb = ${b.city}`);
+  if (a.city.toLowerCase() > b.city.toLowerCase()) {
     return 1;
   }
-  if (a.citytoLowerCase() < b.citytoLowerCase()) {
+  if (a.city.toLowerCase() < b.city.toLowerCase()) {
     return -1;
   }
-  // a должно быть равным b
   return 0;
 });
 return usersArr;
