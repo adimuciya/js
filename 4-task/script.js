@@ -73,14 +73,14 @@ function spamFind(text, ...spam){
 }
 
 function wordsFromSentence(str, numberFlag = true) {
-    let regExp = (numberFlag) ? /[\p{Z}\p{P}\p{M}\p{S}\p{N}]/u : /[\p{Z}\p{P}\p{M}\p{S}\p{L}]/u;
+    let regExp = (numberFlag) ? /[\p{Z}\p{P}\p{M}\p{S}\p{N}]/u :
+         /[\p{Z}\p{P}\p{M}\p{S}\p{L}]/u;
     return str.split(regExp).filter(e => e !== "");
 }
 
 //###3
 function goodsCount(number){
-    number = parseInt(number);
-    console.log(number);
+    number = parseInt(number);    
     let goods = "товар";
     if (11 <= number % 100 && number % 100 <= 19) {
         goods += "ов";
@@ -95,22 +95,23 @@ function goodsCount(number){
 }
 
 //###4
-let getByAge = (usersArr, from, to = +Infinity) => usersArr.filter(e => e.age >= from && e.age < to);
+let getByAge = (usersArr, from, to = +Infinity) => 
+    usersArr.filter(e => e.age >= from && e.age < to);
 
 //###5
-let getByLanguage = (usersArr, language) => usersArr.filter(e => e.favouriteLangs.some(e => e === language.toLowerCase())); 
+let getByLanguage = (usersArr, language) => 
+    usersArr.filter(e => e.favouriteLangs.some(e => e === language.toLowerCase()));
+
+
 
 function sortByCity(usersArr){
-usersArr.sort(function (a, b) {
-    console.log(`a = ${a.city}\nb = ${b.city}`);
-  if (a.city.toLowerCase() > b.city.toLowerCase()) {
-    return 1;
-  }
-  if (a.city.toLowerCase() < b.city.toLowerCase()) {
-    return -1;
-  }
-  return 0;
+usersArr.sort(function (a, b) {    
+    return (a.city.toLowerCase().localeCompare(b.city.toLowerCase()) !== 0) ? 
+        a.city.toLowerCase().localeCompare(b.city.toLowerCase()) : (a.age - b.age ===0) ? 
+            a.login.toLowerCase().localeCompare(b.login.toLowerCase()) : a.age - b.age;
 });
+
+
 return usersArr;
 }
 let users = [
@@ -122,7 +123,7 @@ let users = [
     },
     {
         login: "asd",
-        age: 23,
+        age: 34,
         city: "Москва",
         favouriteLangs: ["python", "javascript"]
     },
@@ -134,7 +135,7 @@ let users = [
     },
     {
         login: "rty56",
-        age: 58,
+        age: 12,
         city: "Тверь",
         favouriteLangs: ["java", "scala"]
     },

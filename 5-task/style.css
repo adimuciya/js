@@ -1,0 +1,42 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	background-color: none;
+}
+.field{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	height: 100vh;
+	align-items: center;	
+}
+.container{	
+	max-width: 1000px;
+	margin: 0 auto;
+}
+.init{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	padding: 1rem;	
+}
+.cell{	
+	background: grey;
+	float: left;
+	transition: all .5s;
+	border: 1px solid white;
+	text-align: center;
+}
+.win{
+	background-color: lightblue;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.cell:hover{
+	opacity: .75;
+}
+.d-none{
+	display: none;
+}
