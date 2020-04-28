@@ -164,22 +164,53 @@ goodsCounter.initListeners();
 //                Прививик: да / нет
 
 // работа с таблицами
-let tableArea = document.getElementById("table");
-let table = document.createElement("table");
-table.setAttribute("border", 1);
+// let tableArea = document.getElementById("table");
+// let table = document.createElement("table");
+// table.setAttribute("border", 1);
 
 // заголовок
-let caption = table.createCaption();
-caption.innerText = "Заголовок таблицы";
+// let caption = table.createCaption();
+// caption.innerText = "Заголовок таблицы";
 
 // ряд
-let row = table.insertRow(0);
+// let row = table.insertRow(0);
 
 // ячейки
-let cell1 = row.insertCell(0);
-let cell2 = row.insertCell(1);
+// let cell1 = row.insertCell(0);
+// let cell2 = row.insertCell(1);
 
-cell1.innerText = "Cell 1";
-cell2.innerText = "Cell 2";
+// cell1.innerText = "Cell 1";
+// cell2.innerText = "Cell 2";
 
 // tableArea.append(table);
+class Table{
+
+	constructor(objArr, tableField){
+		this.objArr = objArr;
+		this.tableField = tableField
+	}
+
+	createTable(){
+		let table = document.createElement("table");
+		table.setAttribute("border", 1);
+		let firstRow = table.insertRow(0);
+		let counter = 0;
+		for(let elem in this.objArr[0]){
+			firstRow.insertCell(counter).innerText = elem;
+			counter++;
+		}
+		for(let i = 0; i < this.objArr.length; i++){
+			let row = table.insertRow(i+1);
+			counter = 0;
+			for(let elem in this.objArr[i]){
+				row.insertCell(counter).innerText = this.objArr[i][elem];
+				counter++;
+			}
+		}
+		this.table = table;
+		this.tableField.append(table);
+	}
+	sort(){
+		
+	}
+}
