@@ -122,13 +122,13 @@ let goodsCounter = {
 	plusButtonListener: function(){
 		let inputNumber = this.previousElementSibling;
 		parseInt(inputNumber.value) < parseInt(inputNumber.dataset.count) ?
-			 inputNumber.value++ : inputNumber.value = inputNumber.dataset.count;
+			 +inputNumber.value++ : inputNumber.value = inputNumber.dataset.count;
 	},
 
 	minusButtonListener: function(){
 		let inputNumber = this.nextElementSibling;
 		parseInt(inputNumber.value) <= 0 ?
-			 inputNumber.value = 0 : inputNumber.value--;
+			 inputNumber.value = 0 : +inputNumber.value--;
 	},
 
 	numberInputListener: function(){		
@@ -183,6 +183,7 @@ goodsCounter.initListeners();
 // cell2.innerText = "Cell 2";
 
 // tableArea.append(table);
+
 class Table{
 
 	constructor(objArr, tableField){
@@ -210,7 +211,53 @@ class Table{
 		this.table = table;
 		this.tableField.append(table);
 	}
-	sort(){
+	initListeners(){
+		this.table.addEventListener("click", this.sort.bind(this));
+	}
+	sort(event){
+		this.table.classList.toggle("yellow");
+		if (event.target.parentElement === this.table.rows[0]) {
+			let columnArr = this.getColumn(event.target);
+			columnArr.sort((a,b) => {
+				return isNaN(+a.innerText) && isNaN(+b.innerText) ? 
+					a.innerText.toLowerCase().localeCompare(b.innerText.toLowerCase()) :
+						+a.innerText - +b.innerText;					
+			});
+			let tmp;
+			for(let i = 1; i < this.table.rows.length; i++){
+				let	tmp;
+				for (let j = 0; j < this.table.rows[i].cells.length; j++) {					
+					// this.table.rows[i].cells[j].innerText = columnArr[i-1].parentElement.cells[j].innerText;
+					// console.log(`i = ${i}, j = ${j}, tmp = ${tmp}`);
+					// this.table.rows[i].cells[j].innerText = tmp; 
+				}				
+			}
+
+			console.log(columnArr);
+		}
 		
 	}
+
+	getColumn(cell){
+		let index = 0;
+		for (let i = 0; i < this.table.rows.length; i++) {
+			for (let j = 0; j < this.table.rows[i].cells.length; j++) {
+				if(this.table.rows[i].cells[j] === cell){
+					index = j;
+				}
+			}
+		}
+		let columnArr = [];
+		for (var i = 1; i < this.table.rows.length; i++) {			
+			columnArr.push(this.table.rows[i].cells[index]);			
+		}
+		return columnArr;
+	}
 }
+
+let tableArea = document.getElementById("table");
+let tableOfGoods = new Table(goods, tableArea);
+tableOfGoods.createTable();
+tableOfGoods.initListeners();
+let tableOfArticles = new Table(articles, tableArea);
+tableOfArticles.createTable();
